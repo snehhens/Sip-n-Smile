@@ -52,14 +52,48 @@ const prizes = [
 var activeBtn = false;
 var audio = new Audio("./assets/wheel-audio.mp3");
 
-function randomNum() {
+/*  function randomNum() {
   var prizeNum;
   do {
     prizeNum = Math.floor(Math.random() * 12);
   } while (prizeNum === 0);
   console.log(prizeNum);
   return prizeNum;
+} */
+
+/* let spinCount = 0; // Initialize a counter to track spins
+
+function randomNum() {
+  spinCount++; // Increment the spin count on every spin
+
+  if (spinCount % 30 === 0) {
+    return 0; // Return id: 0 every 30th spin
+  }
+
+  // Otherwise, return a random number between 1 and 11
+  return Math.floor(Math.random() * 11) + 1;
+} */
+
+  // Initialize spinCount from localStorage or start from 0
+let spinCount = localStorage.getItem("spinCount")
+? parseInt(localStorage.getItem("spinCount"), 10) // Retrieve and parse the stored value
+: 0;
+
+function randomNum() {
+spinCount++; // Increment the spin count on every spin
+
+// Save the updated spinCount to localStorage
+localStorage.setItem("spinCount", spinCount);
+
+if (spinCount % 30 === 0) {
+  return 0; // Return id: 0 every 30th spin
 }
+
+// Otherwise, return a random number between 1 and 11
+return Math.floor(Math.random() * 11) + 1;
+}
+
+
 
 // console.log(prizeNum);
 
